@@ -389,6 +389,8 @@ namespace KopiLua
 			LuaLock(L);
 			if (n < 0)  /* yielding? */
 			  return PCRYIELD;
+			else if(L.status == LUA_YIELD) //zero 23-mar-2012 - add this check to make yielding from c# via luainterface easier
+					return PCRYIELD; //EDIT: to make it _possible_
 			else {
 			  LuaDPosCall(L, L.top - n);
 			  return PCRC;
